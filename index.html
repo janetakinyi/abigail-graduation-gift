@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎓 Happy Graduation Abigail! | From Janet 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #1a0f1a 0%, #2a1a2a 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Poppins', 'Georgia', system-ui, sans-serif;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Canvas for Confetti + Balloons */
+        #animation-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Cards */
+        .card {
+            background: linear-gradient(135deg, #fff9f0 0%, #ffe6f0 100%);
+            border-radius: 70px 50px 70px 50px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.3), 0 0 0 3px rgba(212, 175, 55, 0.4);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+            margin-bottom: 25px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content {
+            padding: 32px 28px 40px;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            border-radius: 50px;
+            padding: 25px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #welcomeTitle {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4a2a3a;
+            letter-spacing: 2px;
+        }
+
+        #welcomeSubtitle {
+            font-size: 1rem;
+            color: #5a2a4a;
+            margin-top: 10px;
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 3px;
+            background-color: #4a2a3a;
+            animation: blink 0.8s infinite;
+            margin-left: 3px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Bible Verse */
+        .verse-box {
+            background: linear-gradient(115deg, #fff7e8, #fff0dd);
+            border-left: 8px solid #d4af37;
+            border-right: 2px solid #ffb6c1;
+            padding: 20px 18px;
+            border-radius: 40px 20px 40px 20px;
+            margin-bottom: 25px;
+        }
+
+        .verse-text {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: #8b3a5e;
+            font-weight: 500;
+            line-height: 1.45;
+        }
+
+        .verse-ref {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #d4af37;
+        }
+
+        /* Letter Card */
+        .letter-card {
+            background: white;
+            border-radius: 45px 25px 45px 25px;
+            padding: 28px 25px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.15);
+            border: 1px solid #ffd9e6;
+        }
+
+        .letter-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #d4af37, #ff85a1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .letter-content {
+            color: #4a2a3a;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .signature {
+            margin-top: 25px;
+            text-align: right;
+            font-style: italic;
+            color: #d4af37;
+            font-size: 1.1rem;
+        }
+
+        /* Sections */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-align: center;
+            margin: 20px 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-title span {
+            background: #ffb6c1;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #4a2a3a;
+        }
+
+        /* Media Grid */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .media-card img, .media-card video {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .media-label {
+            padding: 8px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #b85a7a;
+            background: #fff0f5;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 30px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: #d4af37;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Music Player */
+        .music-player {
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            border-radius: 60px;
+            padding: 12px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .music-controls button {
+            background: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #b85a7a;
+            margin: 0 5px;
+        }
+
+        .confetti-btn {
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #4a2a3a;
+            cursor: pointer;
+            margin: 15px auto;
+            display: block;
+            font-size: 1rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.7rem;
+            color: #b8826a;
+            border-top: 1px solid #ffe0f0;
+            padding-top: 18px;
+        }
+
+        @media (max-width: 550px) {
+            .content { padding: 20px 18px; }
+            #welcomeTitle { font-size: 1.3rem; }
+            .media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="animation-canvas"></canvas>
+
+<div class="container">
+    <div class="card">
+        <div class="content">
+            <div class="welcome-banner">
+                <div id="welcomeTitle"></div>
+                <div id="welcomeSubtitle"></div>
+            </div>
+
+            <div class="verse-box">
+                <div class="verse-text">“For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.”</div>
+                <div class="verse-ref">— Jeremiah 29:11 —</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Janet's Letter -->
+    <div class="card">
+        <div class="content">
+            <div class="letter-card">
+                <div class="letter-title">💖 A Special Message From Janet 💖</div>
+                <div id="letterMessage" class="letter-content"></div>
+                <div class="signature">With lots of love and prayers,<br>Janet ❤️</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-info">🎵 Worship Melody</div>
+        <div class="music-controls">
+            <button id="playBtn">▶ Play</button>
+            <button id="pauseBtn">⏸ Pause</button>
+        </div>
+    </div>
+
+    <!-- Videos Section -->
+    <div class="card">
+        <div class="content">
+            <div class="section-title">🎥 <span>Precious Videos</span> 🎥</div>
+            <div class="media-grid" id="videosGrid"></div>
+        </div>
+    </div>
+
+    <!-- Photos Section -->
+    <div class="card">
+        <div class="content">
+            <div class="section-title">📸 <span>Beautiful Memories</span> 📸</div>
+            <div class="media-grid" id="photosGrid"></div>
+        </div>
+    </div>
+
+    <button class="confetti-btn" id="confettiBtn">🎊 Throw Confetti & Balloons! 🎈</button>
+
+    <div class="footer-note">
+        🕊️ Jeremiah 29:11 — “Plans to give you hope and a future” 🕊️<br>
+        🎓 3rd July | Abigail's Graduation Day 🎓
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-close" id="modalClose">✕</div>
+    <img id="modalImage" class="modal-content" style="display: none;">
+    <video id="modalVideo" class="modal-content" controls style="display: none;"></video>
+</div>
+
+<script>
+    // ============================================================
+    // YOUR MEDIA FILES
+    // ============================================================
+    const VIDEOS = ["Abby1.mp4", "Abby2.mp4", "Abby3.mp4"];
+    
+    const PHOTOS = [
+        "abbey grad.jpg", "abbey grad 1.png",
+        "photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg",
+        "photo6.jpg", "Photo7.jpg", "Photo8.jpg", "photo9.jpg", "photo10.jpg",
+        "photo11.jpg", "photo12.jpg", "photo13.jpg", "Photo14.jpg", "Photo15.jpg",
+        "photo16.jpg", "photo17.jpg", "photo18.jpg", "Photo19.jpg", "Photo20.jpg",
+        "Photo21.jpg", "Photo22.jpg", "Photo23.jpg", "Photo24.jpg"
+    ];
+
+    // ============================================================
+    // JANET'S FULL LETTER (will be typed)
+    // ============================================================
+    const JANET_LETTER = `Dear Abigail,
+
+As I celebrate this special milestone with you, I can't help but look back and smile at how far we've come together.
+
+I still remember my very first encounter with you in 2024 during the pre-wedding preparations. We were selling handkerchiefs, and there you were—so jovial, funny, and full of energy😂. I remember laughing as you confidently started selling to complete strangers along the road. That was the moment I knew you were someone special.
+
+A month later, you were introduced to the Media Department, and that's when our friendship truly began to grow. As time passed, we became closer and closer. There were moments when life became difficult for you, and there were times when I felt like I was slowly losing you to the challenges you were facing. Yet through it all, you continued to wear a smile and trust God, even when things were not easy.
+
+Somewhere along the journey, I decided that you would be my baby sister ❤️. Watching you grow, mature, and become the amazing young woman you are today has been such a blessing. We've shared countless laughs, hilarious photos, unforgettable memories, and moments that I will cherish forever. Now we're like glue—always finding our way back to each other no matter what. 🤗
+
+Abigail, I thank God for your life. Thank you for your friendship, your kindness, your strength, and for being such a beautiful light to everyone around you. Seeing you graduate fills me with so much pride and joy. This is only the beginning of the wonderful things God has prepared for you.
+
+As you step into this new chapter, remember that you are capable, loved, gifted, and destined for great things. Don't be afraid to dream big, trust God wholeheartedly, and keep being the joyful person that makes everyone around you smile.
+
+May the Lord guide every step you take, open doors that no one can shut, and bless you beyond anything you could ever imagine.
+
+"Being confident of this, that He who began a good work in you will carry it on to completion until the day of Christ Jesus." — Philippians 1:6
+
+Congratulations, my baby sister. 🎓✨`;
+
+    // ============================================================
+    // CONFETTI + BALLOONS ANIMATION
+    // ============================================================
+    const canvas = document.getElementById('animation-canvas');
+    const ctx = canvas.getContext('2d');
+    let animationId = null;
+    let particles = [];
+    let balloons = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    // Confetti Particle
+    class Confetti {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height - canvas.height;
+            this.size = Math.random() * 8 + 3;
+            this.speedY = Math.random() * 5 + 3;
+            this.speedX = Math.random() * 2 - 1;
+            this.color = `hsl(${Math.random() * 60 + 30}, 80%, 60%)`;
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = Math.random() * 10 - 5;
+        }
+        update() {
+            this.y += this.speedY;
+            this.x += this.speedX;
+            this.rotation += this.rotationSpeed;
+            if (this.y > canvas.height) {
+                this.y = -this.size;
+                this.x = Math.random() * canvas.width;
+            }
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+        }
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
+            ctx.fillStyle = this.color;
+            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+            ctx.restore();
+        }
+    }
+
+    // Balloon Particle
+    class Balloon {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = canvas.height + Math.random() * 100;
+            this.size = Math.random() * 30 + 20;
+            this.speedY = Math.random() * 2 + 1;
+            this.speedX = Math.random() * 1 - 0.5;
+            const colors = ['#d4af37', '#ffb6c1', '#ff85a1', '#ff69b4', '#ffd700'];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.stringAngle = 0;
+        }
+        update() {
+            this.y -= this.speedY;
+            this.x += this.speedX;
+            this.stringAngle = Math.sin(Date.now() * 0.003) * 0.2;
+            if (this.y + this.size < 0) {
+                this.y = canvas.height + this.size;
+                this.x = Math.random() * canvas.width;
+            }
+            if (this.x > canvas.width + this.size) this.x = -this.size;
+            if (this.x < -this.size) this.x = canvas.width + this.size;
+        }
+        draw() {
+            ctx.save();
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = "rgba(0,0,0,0.2)";
+            // Balloon string
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y + this.size - 5);
+            ctx.quadraticCurveTo(
+                this.x + this.stringAngle * 10, 
+                this.y + this.size + 15, 
+                this.x, 
+                this.y + this.size + 30
+            );
+            ctx.strokeStyle = '#8b6b4a';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            // Balloon body
+            ctx.beginPath();
+            ctx.ellipse(this.x, this.y, this.size/2, this.size/1.5, 0, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+            ctx.fillStyle = 'rgba(255,255,255,0.3)';
+            ctx.beginPath();
+            ctx.ellipse(this.x - this.size/6, this.y - this.size/6, this.size/8, this.size/6, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    function startAnimation(duration = null) {
+        if (animationId) cancelAnimationFrame(animationId);
+        
+        particles = [];
+        balloons = [];
+        for (let i = 0; i < 150; i++) particles.push(new Confetti());
+        for (let i = 0; i < 12; i++) balloons.push(new Balloon());
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of particles) { p.update(); p.draw(); }
+            for (let b of balloons) { b.update(); b.draw(); }
+            animationId = requestAnimationFrame(animate);
+        }
+        animate();
+        
+        if (duration) setTimeout(() => {
+            if (animationId) cancelAnimationFrame(animationId);
+            animationId = null;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }, duration);
+    }
+
+    function burstAnimation() {
+        startAnimation(4000);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+
+    // ============================================================
+    // TYPING ANIMATION
+    // ============================================================
+    function typeWriter(text, element, speed = 25, callback = null) {
+        let i = 0;
+        element.innerHTML = '';
+        function type() {
+            if (i < text.length) {
+                let char = text.charAt(i);
+                if (char === '\n') {
+                    element.innerHTML += '<br>';
+                } else {
+                    element.innerHTML += char;
+                }
+                i++;
+                setTimeout(type, speed);
+            } else if (callback) {
+                callback();
+            }
+        }
+        type();
+    }
+
+    function typeWelcome() {
+        const titleEl = document.getElementById('welcomeTitle');
+        const subtitleEl = document.getElementById('welcomeSubtitle');
+        const titleText = "✨ For You, Abigail ✨";
+        const subtitleText = "💝A digital keepsake honoring your graduation journey, achievements, and the memories that made it all possible💝";
+        
+        let i = 0;
+        titleEl.innerHTML = '';
+        function typeTitle() {
+            if (i < titleText.length) {
+                titleEl.innerHTML += titleText.charAt(i);
+                i++;
+                setTimeout(typeTitle, 60);
+            } else {
+                let j = 0;
+                subtitleEl.innerHTML = '';
+                function typeSubtitle() {
+                    if (j < subtitleText.length) {
+                        subtitleEl.innerHTML += subtitleText.charAt(j);
+                        j++;
+                        setTimeout(typeSubtitle, 40);
+                    }
+                }
+                typeSubtitle();
+            }
+        }
+        typeTitle();
+    }
+
+    // ============================================================
+    // LOAD MEDIA
+    // ============================================================
+    const videosGrid = document.getElementById('videosGrid');
+    VIDEOS.forEach((video, i) => {
+        const card = document.createElement('div');
+        card.className = 'media-card';
+        card.innerHTML = `<video src="${video}" preload="metadata"></video><div class="media-label">🎥 Video ${i+1}</div>`;
+        card.onclick = () => { burstAnimation(); openModal(video, true); };
+        videosGrid.appendChild(card);
+    });
+
+    const photosGrid = document.getElementById('photosGrid');
+    PHOTOS.forEach((photo, i) => {
+        const card = document.createElement('div');
+        card.className = 'media-card';
+        card.innerHTML = `<img src="${photo}" alt="Memory"><div class="media-label">📸 Memory ${i+1}</div>`;
+        card.onclick = () => { burstAnimation(); openModal(photo, false); };
+        photosGrid.appendChild(card);
+    });
+
+    // Modal
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modalImage');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalClose = document.getElementById('modalClose');
+
+    function openModal(src, isVideo) {
+        if (isVideo) {
+            modalImage.style.display = 'none';
+            modalVideo.style.display = 'block';
+            modalVideo.src = src;
+            modalVideo.load();
+            modalVideo.play();
+        } else {
+            modalVideo.style.display = 'none';
+            modalImage.style.display = 'block';
+            modalImage.src = src;
+        }
+        modal.classList.add('active');
+    }
+
+    modalClose.onclick = () => {
+        modal.classList.remove('active');
+        modalVideo.pause();
+        modalVideo.src = '';
+    };
+    modal.onclick = (e) => { if (e.target === modal) modalClose.onclick(); };
+
+    // Music
+    const audio = new Audio();
+    const songs = ["CeCe Winans - Goodness of God .mp3", "Yemi Alade - Na Gode.mp3"];
+    let songIndex = 0;
+    audio.src = songs[0];
+    document.getElementById('playBtn').onclick = () => audio.play();
+    document.getElementById('pauseBtn').onclick = () => audio.pause();
+    audio.onended = () => {
+        songIndex = (songIndex + 1) % songs.length;
+        audio.src = songs[songIndex];
+        audio.play();
+    };
+
+    // Confetti button
+    document.getElementById('confettiBtn').onclick = () => startAnimation(5000);
+
+    // Initialize
+    window.addEventListener('load', () => {
+        resizeCanvas();
+        typeWelcome();
+        typeWriter(JANET_LETTER, document.getElementById('letterMessage'), 20);
+        startAnimation(6000);
+    });
+</script>
+</body>
+</html>

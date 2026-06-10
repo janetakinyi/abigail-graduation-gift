@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎓 Happy Graduation Abigail! 🎊✨</title    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #1a0f1a 0%, #2a1a2a 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Poppins', 'Georgia', system-ui, sans-serif;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Card Style */
+        .card {
+            background: linear-gradient(135deg, #fff9f0 0%, #ffe6f0 100%);
+            border-radius: 70px 50px 70px 50px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.3), 0 0 0 3px rgba(212, 175, 55, 0.4);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+            margin-bottom: 25px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content {
+            padding: 32px 28px 40px;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            border-radius: 50px;
+            padding: 15px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .welcome-banner h2 {
+            color: #4a2a3a;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .welcome-banner p {
+            color: #5a2a4a;
+            font-size: 0.9rem;
+        }
+
+        /* Bible Verse */
+        .verse-box {
+            background: linear-gradient(115deg, #fff7e8, #fff0dd);
+            border-left: 8px solid #d4af37;
+            border-right: 2px solid #ffb6c1;
+            padding: 20px 18px;
+            border-radius: 40px 20px 40px 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .verse-text {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: #8b3a5e;
+            font-weight: 500;
+            line-height: 1.45;
+        }
+
+        .verse-ref {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #d4af37;
+            letter-spacing: 1px;
+        }
+
+        /* Message */
+        .message {
+            background: white;
+            border-radius: 45px 25px 45px 25px;
+            padding: 24px 22px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.15);
+            border: 1px solid #ffd9e6;
+        }
+
+        .greeting {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #d4af37, #ff85a1, #d4af37);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s infinite linear;
+            margin-bottom: 16px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .msg-text {
+            color: #4a2a3a;
+            line-height: 1.6;
+            font-size: 0.98rem;
+        }
+
+        .msg-text strong {
+            color: #d4af37;
+        }
+
+        hr {
+            margin: 18px 0;
+            border: 1px solid #ffe0f0;
+        }
+
+        /* Typing Animation */
+        .typing-container {
+            background: linear-gradient(135deg, #fff0f5, #ffffff);
+            border-radius: 30px;
+            padding: 14px 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #d4af37;
+        }
+
+        #typingMessage {
+            font-size: 1rem;
+            color: #b85a7a;
+            font-style: italic;
+            min-height: 70px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #d4af37;
+            animation: blink 0.8s infinite;
+            margin-left: 3px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-align: center;
+            margin: 20px 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-title span {
+            background: #ffb6c1;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #4a2a3a;
+        }
+
+        /* Media Grid */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .media-card img, .media-card video {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .media-card video {
+            background: #000;
+        }
+
+        .media-label {
+            padding: 8px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #b85a7a;
+            background: #fff0f5;
+        }
+
+        /* Modal for full view */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: #d4af37;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1);
+            background: #ffb6c1;
+        }
+
+        /* Music Player */
+        .music-player {
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            border-radius: 60px;
+            padding: 12px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .music-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4a2a3a;
+        }
+
+        .music-controls button {
+            background: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #b85a7a;
+            transition: 0.2s;
+        }
+
+        .music-controls button:hover {
+            transform: scale(1.05);
+            background: #4a2a3a;
+            color: #d4af37;
+        }
+
+        /* Confetti Button */
+        .confetti-btn {
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #4a2a3a;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .confetti-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.7rem;
+            color: #b8826a;
+            border-top: 1px solid #ffe0f0;
+            padding-top: 18px;
+        }
+
+        @media (max-width: 550px) {
+            .content { padding: 20px 18px; }
+            .greeting { font-size: 1.5rem; }
+            .media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Confetti Canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<div class="container">
+    <!-- Main Card -->
+    <div class="card">
+        <div class="content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <h2>✨ For You, Abigail ✨</h2>
+                <p>💝 A special graduation gift from your church family 💝</p>
+            </div>
+
+            <!-- Bible Verse -->
+            <div class="verse-box">
+                <div class="verse-text">“For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.”</div>
+                <div class="verse-ref">— Jeremiah 29:11 —</div>
+            </div>
+
+            <!-- Message -->
+            <div class="message">
+                <div class="greeting">🎓 Congratulations, Abigail! ✨</div>
+                <div class="msg-text">
+                    As you graduate today, I thank God for your life and the journey He has brought you through. This moment is not just the end of your studies, but a beautiful beginning of the purpose God has prepared for you.<br><br>
+                    It has been a blessing <strong>serving alongside you in church</strong> and sharing moments of faith, growth, and dedication together. I truly appreciate the heart you carry for God's work and the light you bring wherever you go.<br><br>
+                    May the Lord continue to guide your steps, strengthen your dreams, and open doors that no one can shut. May He go before you in every season ahead and surround you with favor and peace.<br><br>
+                    Congratulations <strong>Abigail</strong> — may your future be filled with grace, success, and divine direction. You deserve this moment and so much more. 💛🙏
+                </div>
+                <hr>
+                <div style="font-size:0.8rem; text-align:right; font-style:italic; color:#b85a7a;">With love, your church family & colleague ✝️</div>
+            </div>
+
+            <!-- Typing Animation -->
+            <div class="typing-container">
+                <div id="typingMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-info">
+            🎵 <span>Worship Melody</span>
+        </div>
+        <div class="music-controls">
+            <button id="playMusicBtn">▶ Play</button>
+            <button id="pauseMusicBtn">⏸ Pause</button>
+        </div>
+    </div>
+
+    <!-- Videos Section -->
+    <div class="card">
+        <div class="content">
+            <div class="section-title">
+                🎥 <span>Precious Videos</span> 🎥
+            </div>
+            <div class="media-grid" id="videosGrid"></div>
+        </div>
+    </div>
+
+    <!-- Photos Section -->
+    <div class="card">
+        <div class="content">
+            <div class="section-title">
+                📸 <span>Beautiful Memories</span> 📸
+            </div>
+            <div class="media-grid" id="photosGrid"></div>
+        </div>
+    </div>
+
+    <!-- Confetti Button -->
+    <button class="confetti-btn" id="confettiBtn">🎊 Throw More Confetti! 🎊</button>
+
+    <div class="footer-note">
+        🕊️ Jeremiah 29:11 — “Plans to give you hope and a future” 🕊️<br>
+        🎓 3rd July | Abigail's Graduation Day 🎓<br>
+        💖 God's blessings on your new journey! 💖
+    </div>
+</div>
+
+<!-- Modal for full view -->
+<div id="modal" class="modal">
+    <div class="modal-close" id="modalClose">✕</div>
+    <img id="modalImage" class="modal-content" style="display: none;">
+    <video id="modalVideo" class="modal-content" controls style="display: none;"></video>
+</div>
+
+<script>
+    // ============================================================
+    // 📸 YOUR FILES - UPDATE THESE LISTS!
+    // ============================================================
+    
+    const VIDEOS = [
+        "Abby1.mp4",
+        "Abby2.mp4",
+        "Abby3.mp4"
+    ];
+    
+    const PHOTOS = [
+        "photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg",
+        "photo6.jpg", "Photo7.jpg", "Photo8.jpg", "photo9.jpg", "photo10.jpg",
+        "photo11.jpg", "photo12.jpg", "photo13.jpg", "Photo14.jpg", "Photo15.jpg",
+        "photo16.jpg", "photo17.jpg", "photo18.jpg", "Photo19.jpg", "Photo20.jpg",
+        "Photo21.jpg", "Photo22.jpg", "Photo23.jpg", "Photo24.jpg"
+    ];
+    
+    // ============================================================
+    // ✍️ TYPING MESSAGE
+    // ============================================================
+    const TYPING_TEXT = "💕 Dear Abigail... Each photo and video here holds a memory I treasure. From serving together in church to sharing God's love, you've been such a blessing. I'm so proud of you! May God bless your future abundantly! ✨🎓";
+    
+    // ============================================================
+    // 🎊 CONFETTI ANIMATION!
+    // ============================================================
+    
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let animationId = null;
+    let particles = [];
+    
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    class ConfettiParticle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height - canvas.height;
+            this.size = Math.random() * 8 + 3;
+            this.speedY = Math.random() * 5 + 3;
+            this.speedX = Math.random() * 2 - 1;
+            this.color = `hsl(${Math.random() * 60 + 30}, 80%, 60%)`; // Gold, pink, red hues
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = Math.random() * 10 - 5;
+        }
+        
+        update() {
+            this.y += this.speedY;
+            this.x += this.speedX;
+            this.rotation += this.rotationSpeed;
+            
+            if (this.y > canvas.height) {
+                this.y = -this.size;
+                this.x = Math.random() * canvas.width;
+            }
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+        }
+        
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
+            ctx.fillStyle = this.color;
+            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+            ctx.restore();
+        }
+    }
+    
+    function startConfetti(duration = 3000) {
+        // Stop existing animation
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+        
+        // Create 200 particles
+        particles = [];
+        for (let i = 0; i < 200; i++) {
+            particles.push(new ConfettiParticle());
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+            
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Stop after duration
+        setTimeout(() => {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }, duration);
+    }
+    
+    function burstConfetti() {
+        // Quick burst of confetti
+        for (let i = 0; i < 100; i++) {
+            setTimeout(() => startConfetti(800), i * 30);
+        }
+    }
+    
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        if (animationId) {
+            startConfetti(500);
+        }
+    });
+    
+    // ============================================================
+    // 🎵 MUSIC (add your mp3 files)
+    // ============================================================
+    
+    const audio = new Audio();
+    let currentSong = 0;
+    const songs = [
+        // "Goodness of God.mp3",
+        // "Na Gode.mp3"
+    ];
+    
+    // ============================================================
+    // 🎨 LOAD MEDIA
+    // ============================================================
+    
+    // Load Videos
+    const videosGrid = document.getElementById('videosGrid');
+    VIDEOS.forEach((video, index) => {
+        const card = document.createElement('div');
+        card.className = 'media-card';
+        card.innerHTML = `
+            <video src="${video}" preload="metadata"></video>
+            <div class="media-label">🎥 Video ${index + 1}</div>
+        `;
+        card.onclick = () => {
+            burstConfetti();
+            openModal(video, true);
+        };
+        videosGrid.appendChild(card);
+    });
+    
+    // Load Photos
+    const photosGrid = document.getElementById('photosGrid');
+    PHOTOS.forEach((photo, index) => {
+        const card = document.createElement('div');
+        card.className = 'media-card';
+        card.innerHTML = `
+            <img src="${photo}" alt="Memory ${index + 1}">
+            <div class="media-label">📸 Memory ${index + 1}</div>
+        `;
+        card.onclick = () => {
+            burstConfetti();
+            openModal(photo, false);
+        };
+        photosGrid.appendChild(card);
+    });
+    
+    // Modal functions
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modalImage');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalClose = document.getElementById('modalClose');
+    
+    function openModal(src, isVideo) {
+        if (isVideo) {
+            modalImage.style.display = 'none';
+            modalVideo.style.display = 'block';
+            modalVideo.src = src;
+            modalVideo.load();
+            modalVideo.play();
+        } else {
+            modalVideo.style.display = 'none';
+            modalImage.style.display = 'block';
+            modalImage.src = src;
+        }
+        modal.classList.add('active');
+    }
+    
+    modalClose.onclick = () => {
+        modal.classList.remove('active');
+        modalVideo.pause();
+        modalVideo.src = '';
+    };
+    
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.src = '';
+        }
+    };
+    
+    // Typing animation
+    function typeWriter(text, element, speed = 40) {
+        let i = 0;
+        element.innerHTML = '';
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                const cursor = document.createElement('span');
+                cursor.className = 'cursor';
+                cursor.innerHTML = '|';
+                element.appendChild(cursor);
+            }
+        }
+        type();
+    }
+    
+    // Music controls
+    if (songs.length > 0) {
+        audio.src = songs[0];
+        document.getElementById('playMusicBtn').onclick = () => audio.play();
+        document.getElementById('pauseMusicBtn').onclick = () => audio.pause();
+    } else {
+        document.getElementById('playMusicBtn').onclick = () => alert("🎵 To add music: Download 'Goodness of God.mp3' and 'Na Gode.mp3' to this folder!");
+    }
+    
+    // Confetti button
+    document.getElementById('confettiBtn').onclick = () => {
+        startConfetti(4000);
+    };
+    
+    // Initialize
+    window.addEventListener('load', () => {
+        resizeCanvas();
+        typeWriter(TYPING_TEXT, document.getElementById('typingMessage'), 45);
+        startConfetti(5000); // Confetti on page load!
+    });
+</script>
+</body>
+</html>
