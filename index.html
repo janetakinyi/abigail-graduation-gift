@@ -12,14 +12,13 @@
         }
 
         body {
-            background: linear-gradient(145deg, #1a0f1a 0%, #2a1a2a 100%);
+            background: linear-gradient(145deg, #0a0a0a 0%, #1a0f0f 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', 'Poppins', 'Georgia', system-ui, sans-serif;
             padding: 20px;
             overflow-x: hidden;
         }
 
-        /* Canvas for Confetti + Balloons */
         #animation-canvas {
             position: fixed;
             top: 0;
@@ -37,14 +36,14 @@
             z-index: 1;
         }
 
-        /* Cards */
         .card {
-            background: linear-gradient(135deg, #fff9f0 0%, #ffe6f0 100%);
+            background: linear-gradient(145deg, #1a1a1a 0%, #2a1a1a 100%);
             border-radius: 70px 50px 70px 50px;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.3), 0 0 0 3px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.8), 0 0 0 3px rgba(212, 175, 55, 0.6);
             overflow: hidden;
             animation: fadeInUp 0.8s ease-out;
             margin-bottom: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         @keyframes fadeInUp {
@@ -56,9 +55,9 @@
             padding: 32px 28px 40px;
         }
 
-        /* Welcome Banner */
         .welcome-banner {
-            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
+            border: 2px solid #d4af37;
             border-radius: 50px;
             padding: 25px 20px;
             text-align: center;
@@ -67,48 +66,38 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
         }
 
         #welcomeTitle {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #4a2a3a;
+            color: #d4af37;
             letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         #welcomeSubtitle {
             font-size: 1rem;
-            color: #5a2a4a;
+            color: #ffb6c1;
             margin-top: 10px;
+            text-shadow: 0 0 15px rgba(255, 182, 193, 0.2);
         }
 
-        .cursor-blink {
-            display: inline-block;
-            width: 3px;
-            background-color: #4a2a3a;
-            animation: blink 0.8s infinite;
-            margin-left: 3px;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Bible Verse */
         .verse-box {
-            background: linear-gradient(115deg, #fff7e8, #fff0dd);
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
             border-left: 8px solid #d4af37;
             border-right: 2px solid #ffb6c1;
             padding: 20px 18px;
             border-radius: 40px 20px 40px 20px;
             margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .verse-text {
             font-size: 1.15rem;
             font-style: italic;
-            color: #8b3a5e;
+            color: #ffb6c1;
             font-weight: 500;
             line-height: 1.45;
         }
@@ -117,22 +106,22 @@
             font-weight: bold;
             margin-top: 10px;
             color: #d4af37;
+            letter-spacing: 1px;
         }
 
-        /* Letter Card */
         .letter-card {
-            background: white;
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
             border-radius: 45px 25px 45px 25px;
             padding: 28px 25px;
             margin-bottom: 28px;
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.15);
-            border: 1px solid #ffd9e6;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .letter-title {
             font-size: 1.6rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #d4af37, #ff85a1);
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -141,9 +130,13 @@
         }
 
         .letter-content {
-            color: #4a2a3a;
+            color: #e0d5d5;
             line-height: 1.8;
             font-size: 1rem;
+        }
+
+        .letter-content strong {
+            color: #d4af37;
         }
 
         .signature {
@@ -154,7 +147,42 @@
             font-size: 1.1rem;
         }
 
-        /* Sections */
+        .poster-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .poster-card {
+            background: #0a0a0a;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 2px solid #d4af37;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .poster-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .poster-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .poster-label {
+            padding: 10px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #ffb6c1;
+            background: #1a1a1a;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
         .section-title {
             font-size: 1.5rem;
             font-weight: bold;
@@ -165,17 +193,17 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
         .section-title span {
-            background: #ffb6c1;
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
             padding: 5px 15px;
             border-radius: 50px;
             font-size: 0.9rem;
-            color: #4a2a3a;
+            color: #1a1a1a;
         }
 
-        /* Media Grid */
         .media-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -184,10 +212,10 @@
         }
 
         .media-card {
-            background: white;
+            background: #1a1a1a;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             transition: transform 0.3s ease;
             cursor: pointer;
         }
@@ -207,11 +235,10 @@
             padding: 8px;
             text-align: center;
             font-size: 0.7rem;
-            color: #b85a7a;
-            background: #fff0f5;
+            color: #ffb6c1;
+            background: #0a0a0a;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -219,7 +246,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.98);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -233,6 +260,8 @@
             max-width: 90%;
             max-height: 80%;
             border-radius: 30px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
         }
 
         .modal-close {
@@ -249,11 +278,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: 0.2s;
         }
 
-        /* Music Player */
+        .modal-close:hover {
+            transform: scale(1.1);
+            background: #ffb6c1;
+        }
+
         .music-player {
-            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
+            border: 2px solid #d4af37;
             border-radius: 60px;
             padding: 12px 20px;
             margin: 20px 0;
@@ -264,15 +299,25 @@
             gap: 10px;
         }
 
+        .music-info {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
         .music-controls button {
-            background: white;
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
             border: none;
             padding: 8px 20px;
             border-radius: 40px;
             font-weight: bold;
             cursor: pointer;
-            color: #b85a7a;
+            color: #1a1a1a;
             margin: 0 5px;
+            transition: 0.2s;
+        }
+
+        .music-controls button:hover {
+            transform: scale(1.05);
         }
 
         .confetti-btn {
@@ -281,19 +326,24 @@
             padding: 12px 25px;
             border-radius: 50px;
             font-weight: bold;
-            color: #4a2a3a;
+            color: #1a1a1a;
             cursor: pointer;
             margin: 15px auto;
             display: block;
             font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .confetti-btn:hover {
+            transform: scale(1.05);
         }
 
         .footer-note {
             text-align: center;
             margin-top: 25px;
             font-size: 0.7rem;
-            color: #b8826a;
-            border-top: 1px solid #ffe0f0;
+            color: #d4af37;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
             padding-top: 18px;
         }
 
@@ -301,6 +351,7 @@
             .content { padding: 20px 18px; }
             #welcomeTitle { font-size: 1.3rem; }
             .media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+            .poster-section { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -320,6 +371,14 @@
                 <div class="verse-text">“For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.”</div>
                 <div class="verse-ref">— Jeremiah 29:11 —</div>
             </div>
+        </div>
+    </div>
+
+    <!-- POSTERS SECTION - 4 Posters Only -->
+    <div class="card">
+        <div class="content">
+            <div class="section-title">🎓 <span>Graduation Posters</span> 🎓</div>
+            <div class="poster-section" id="postersGrid"></div>
         </div>
     </div>
 
@@ -376,21 +435,29 @@
 
 <script>
     // ============================================================
-    // YOUR MEDIA FILES
+    // ALL YOUR FILES - CORRECT NAMES!
+    // Posters: Only 4 unique ones (removed duplicate)
     // ============================================================
+    const POSTERS = [
+        "abbey-poster.png",
+        "abbey2.png",
+        "abbey-grad-1.png",
+        "abbey.jpg"
+    ];
+
     const VIDEOS = ["Abby1.mp4", "Abby2.mp4", "Abby3.mp4"];
     
     const PHOTOS = [
-        "abbey grad.jpg", "abbey grad 1.png",
         "photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg",
         "photo6.jpg", "Photo7.jpg", "Photo8.jpg", "photo9.jpg", "photo10.jpg",
         "photo11.jpg", "photo12.jpg", "photo13.jpg", "Photo14.jpg", "Photo15.jpg",
-        "photo16.jpg", "photo17.jpg", "photo18.jpg", "Photo19.jpg", "Photo20.jpg",
-        "Photo21.jpg", "Photo22.jpg", "Photo23.jpg", "Photo24.jpg"
+        "Photo16.jpg", "photo17.jpg", "photo18.jpg", "Photo19.jpg", "Photo20.jpg",
+        "Photo21.jpg", "Photo22.jpg", "Photo23.jpg", "Photo24.jpg", "photo25.jpg",
+        "IMG_0380.jpg", "IMG_0381.jpg"
     ];
 
     // ============================================================
-    // JANET'S FULL LETTER (will be typed)
+    // JANET'S LETTER
     // ============================================================
     const JANET_LETTER = `Dear Abigail,
 
@@ -426,7 +493,6 @@ Congratulations, my baby sister. 🎓✨`;
         canvas.height = window.innerHeight;
     }
 
-    // Confetti Particle
     class Confetti {
         constructor() {
             this.x = Math.random() * canvas.width;
@@ -459,7 +525,6 @@ Congratulations, my baby sister. 🎓✨`;
         }
     }
 
-    // Balloon Particle
     class Balloon {
         constructor() {
             this.x = Math.random() * canvas.width;
@@ -486,7 +551,6 @@ Congratulations, my baby sister. 🎓✨`;
             ctx.save();
             ctx.shadowBlur = 5;
             ctx.shadowColor = "rgba(0,0,0,0.2)";
-            // Balloon string
             ctx.beginPath();
             ctx.moveTo(this.x, this.y + this.size - 5);
             ctx.quadraticCurveTo(
@@ -498,7 +562,6 @@ Congratulations, my baby sister. 🎓✨`;
             ctx.strokeStyle = '#8b6b4a';
             ctx.lineWidth = 1.5;
             ctx.stroke();
-            // Balloon body
             ctx.beginPath();
             ctx.ellipse(this.x, this.y, this.size/2, this.size/1.5, 0, 0, Math.PI * 2);
             ctx.fillStyle = this.color;
@@ -567,7 +630,7 @@ Congratulations, my baby sister. 🎓✨`;
         const titleEl = document.getElementById('welcomeTitle');
         const subtitleEl = document.getElementById('welcomeSubtitle');
         const titleText = "✨ For You, Abigail ✨";
-        const subtitleText = "💝A digital keepsake honoring your graduation journey, achievements, and the memories that made it all possible💝";
+        const subtitleText = "💝 A special graduation gift from your loved ones 💝";
         
         let i = 0;
         titleEl.innerHTML = '';
@@ -595,6 +658,17 @@ Congratulations, my baby sister. 🎓✨`;
     // ============================================================
     // LOAD MEDIA
     // ============================================================
+    // Posters - Only 4 unique ones
+    const postersGrid = document.getElementById('postersGrid');
+    POSTERS.forEach((poster, i) => {
+        const card = document.createElement('div');
+        card.className = 'poster-card';
+        card.innerHTML = `<img src="${poster}" alt="Poster ${i+1}"><div class="poster-label">🎓 Poster ${i+1}</div>`;
+        card.onclick = () => { burstAnimation(); openModal(poster, false); };
+        postersGrid.appendChild(card);
+    });
+
+    // Videos
     const videosGrid = document.getElementById('videosGrid');
     VIDEOS.forEach((video, i) => {
         const card = document.createElement('div');
@@ -604,6 +678,7 @@ Congratulations, my baby sister. 🎓✨`;
         videosGrid.appendChild(card);
     });
 
+    // Photos
     const photosGrid = document.getElementById('photosGrid');
     PHOTOS.forEach((photo, i) => {
         const card = document.createElement('div');
@@ -643,7 +718,11 @@ Congratulations, my baby sister. 🎓✨`;
 
     // Music
     const audio = new Audio();
-    const songs = ["CeCe Winans - Goodness of God .mp3", "Yemi Alade - Na Gode.mp3"];
+    const songs = [
+        "Living Hope [_3gFobQHWAE].mp3",
+        "Yemi Alade - Na Gode.mp3",
+        "Post Malone - Congratulations (Official Music Video) ft. Quavo [SC4xMk98Pdc].mp3"
+    ];
     let songIndex = 0;
     audio.src = songs[0];
     document.getElementById('playBtn').onclick = () => audio.play();
@@ -667,3 +746,4 @@ Congratulations, my baby sister. 🎓✨`;
 </script>
 </body>
 </html>
+
