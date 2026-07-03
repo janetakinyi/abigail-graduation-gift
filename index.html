@@ -239,6 +239,90 @@
             background: #0a0a0a;
         }
 
+        /* Voice Note Player - SEPARATE */
+        .voice-note-player {
+            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
+            border: 2px solid #ffb6c1;
+            border-radius: 60px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 0 30px rgba(255, 182, 193, 0.15);
+        }
+
+        .voice-note-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffb6c1;
+            font-weight: bold;
+        }
+
+        .voice-note-info .icon {
+            font-size: 1.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .voice-note-controls button {
+            background: linear-gradient(135deg, #ffb6c1, #ff85a1);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #1a1a1a;
+            margin: 0 5px;
+            transition: 0.2s;
+        }
+
+        .voice-note-controls button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Music Player - SEPARATE */
+        .music-player {
+            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
+            border: 2px solid #d4af37;
+            border-radius: 60px;
+            padding: 12px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .music-info {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .music-controls button {
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #1a1a1a;
+            margin: 0 5px;
+            transition: 0.2s;
+        }
+
+        .music-controls button:hover {
+            transform: scale(1.05);
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -284,40 +368,6 @@
         .modal-close:hover {
             transform: scale(1.1);
             background: #ffb6c1;
-        }
-
-        .music-player {
-            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
-            border: 2px solid #d4af37;
-            border-radius: 60px;
-            padding: 12px 20px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .music-info {
-            color: #d4af37;
-            font-weight: bold;
-        }
-
-        .music-controls button {
-            background: linear-gradient(135deg, #d4af37, #ffb6c1);
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #1a1a1a;
-            margin: 0 5px;
-            transition: 0.2s;
-        }
-
-        .music-controls button:hover {
-            transform: scale(1.05);
         }
 
         .confetti-btn {
@@ -374,7 +424,7 @@
         </div>
     </div>
 
-    <!-- POSTERS SECTION - 4 Posters Only -->
+    <!-- POSTERS SECTION -->
     <div class="card">
         <div class="content">
             <div class="section-title">🎓 <span>Graduation Posters</span> 🎓</div>
@@ -393,12 +443,25 @@
         </div>
     </div>
 
-    <!-- Music Player -->
+    <!-- VOICE NOTE PLAYER - SEPARATE -->
+    <div class="voice-note-player">
+        <div class="voice-note-info">
+            <span class="icon">🎙️</span>
+            <span>Voice Note from Janet 💝</span>
+        </div>
+        <div class="voice-note-controls">
+            <button id="voicePlayBtn">▶ Play</button>
+            <button id="voicePauseBtn">⏸ Pause</button>
+        </div>
+    </div>
+
+    <!-- MUSIC PLAYER - SEPARATE -->
     <div class="music-player">
         <div class="music-info">🎵 Worship Melody</div>
         <div class="music-controls">
             <button id="playBtn">▶ Play</button>
             <button id="pauseBtn">⏸ Pause</button>
+            <button id="nextBtn">⏭ Next</button>
         </div>
     </div>
 
@@ -435,8 +498,7 @@
 
 <script>
     // ============================================================
-    // ALL YOUR FILES - CORRECT NAMES!
-    // Posters: Only 4 unique ones (removed duplicate)
+    // ALL YOUR FILES
     // ============================================================
     const POSTERS = [
         "abbey-poster.png",
@@ -658,7 +720,6 @@ Congratulations, my baby sister. 🎓✨`;
     // ============================================================
     // LOAD MEDIA
     // ============================================================
-    // Posters - Only 4 unique ones
     const postersGrid = document.getElementById('postersGrid');
     POSTERS.forEach((poster, i) => {
         const card = document.createElement('div');
@@ -668,7 +729,6 @@ Congratulations, my baby sister. 🎓✨`;
         postersGrid.appendChild(card);
     });
 
-    // Videos
     const videosGrid = document.getElementById('videosGrid');
     VIDEOS.forEach((video, i) => {
         const card = document.createElement('div');
@@ -678,7 +738,6 @@ Congratulations, my baby sister. 🎓✨`;
         videosGrid.appendChild(card);
     });
 
-    // Photos
     const photosGrid = document.getElementById('photosGrid');
     PHOTOS.forEach((photo, i) => {
         const card = document.createElement('div');
@@ -716,21 +775,40 @@ Congratulations, my baby sister. 🎓✨`;
     };
     modal.onclick = (e) => { if (e.target === modal) modalClose.onclick(); };
 
-    // Music
-    const audio = new Audio();
+    // ============================================================
+    // VOICE NOTE PLAYER - SEPARATE!
+    // ============================================================
+    const voiceAudio = new Audio("voicenote.mp3");
+    document.getElementById('voicePlayBtn').onclick = () => {
+        voiceAudio.play();
+    };
+    document.getElementById('voicePauseBtn').onclick = () => {
+        voiceAudio.pause();
+    };
+
+    // ============================================================
+    // MUSIC PLAYER - SEPARATE!
+    // ============================================================
+    const musicAudio = new Audio();
     const songs = [
         "Living Hope [_3gFobQHWAE].mp3",
         "Yemi Alade - Na Gode.mp3",
         "Post Malone - Congratulations (Official Music Video) ft. Quavo [SC4xMk98Pdc].mp3"
     ];
     let songIndex = 0;
-    audio.src = songs[0];
-    document.getElementById('playBtn').onclick = () => audio.play();
-    document.getElementById('pauseBtn').onclick = () => audio.pause();
-    audio.onended = () => {
+    musicAudio.src = songs[0];
+
+    document.getElementById('playBtn').onclick = () => musicAudio.play();
+    document.getElementById('pauseBtn').onclick = () => musicAudio.pause();
+    document.getElementById('nextBtn').onclick = () => {
         songIndex = (songIndex + 1) % songs.length;
-        audio.src = songs[songIndex];
-        audio.play();
+        musicAudio.src = songs[songIndex];
+        musicAudio.play();
+    };
+    musicAudio.onended = () => {
+        songIndex = (songIndex + 1) % songs.length;
+        musicAudio.src = songs[songIndex];
+        musicAudio.play();
     };
 
     // Confetti button
