@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🎓 Happy Graduation Abigail! | From Janet 💖</title>
+    <title>🎓 Happy Graduation Abigael! | From Janet 💖</title>
     <style>
         * {
             margin: 0;
@@ -30,7 +30,7 @@
         }
 
         .container {
-            max-width: 650px;
+            max-width: 700px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -109,7 +109,7 @@
             letter-spacing: 1px;
         }
 
-        /* VOICE NOTE PLAYER - ENHANCED */
+        /* VOICE NOTE CARD */
         .voice-note-card {
             background: linear-gradient(145deg, #1a1a1a, #2a1a1a);
             border-radius: 45px 25px 45px 25px;
@@ -121,10 +121,13 @@
 
         .voice-note-title {
             text-align: center;
-            font-size: 1.3rem;
-            color: #ffb6c1;
-            margin-bottom: 20px;
+            font-size: 1.6rem;
             font-weight: bold;
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -138,6 +141,15 @@
         @keyframes pulseMic {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
+        }
+
+        .voice-note-subtitle {
+            text-align: center;
+            color: #ffb6c1;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            font-style: italic;
         }
 
         .voice-player-container {
@@ -250,42 +262,70 @@
             opacity: 0.7;
         }
 
+        .voice-signature {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #d4af37;
+            font-style: italic;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 182, 193, 0.2);
+        }
+
+        .voice-signature .heart {
+            color: #ffb6c1;
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* ============================================================
+           LETTER CARD - ZOOMED FOR EASY READING!
+           ============================================================ */
         .letter-card {
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
             border-radius: 45px 25px 45px 25px;
-            padding: 28px 25px;
+            padding: 35px 30px;
             margin-bottom: 28px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .letter-title {
-            font-size: 1.6rem;
+            font-size: 2rem;
             font-weight: bold;
             background: linear-gradient(135deg, #d4af37, #ffb6c1);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
         .letter-content {
             color: #e0d5d5;
-            line-height: 1.8;
-            font-size: 1rem;
+            line-height: 2.2;
+            font-size: 1.3rem;
+            padding: 0 5px;
         }
 
         .letter-content strong {
             color: #d4af37;
         }
 
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+
         .signature {
-            margin-top: 25px;
+            margin-top: 30px;
             text-align: right;
             font-style: italic;
             color: #d4af37;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
         }
 
         .poster-section {
@@ -494,6 +534,15 @@
             .media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
             .poster-section { grid-template-columns: 1fr; }
             .voice-controls button { padding: 10px 20px; font-size: 0.9rem; }
+            .voice-note-title { font-size: 1.3rem; }
+            .letter-content { font-size: 1.1rem; line-height: 2; }
+            .letter-title { font-size: 1.5rem; }
+            .signature { font-size: 1.1rem; }
+        }
+
+        @media (max-width: 400px) {
+            .letter-content { font-size: 1rem; line-height: 1.8; }
+            .letter-card { padding: 20px 15px; }
         }
     </style>
 </head>
@@ -524,15 +573,16 @@
         </div>
     </div>
 
-    <!-- VOICE NOTE PLAYER - ENHANCED -->
+    <!-- VOICE NOTE CARD -->
     <div class="card">
         <div class="content">
             <div class="voice-note-card">
                 <div class="voice-note-title">
                     <span class="icon">🎙️</span>
-                    💖 A Voice Message From Janet 💖
+                    💖 A Special Message From Janet 💖
                     <span class="icon">🎙️</span>
                 </div>
+                <div class="voice-note-subtitle">💝 Listen to my heart for you... 💝</div>
 
                 <div class="voice-player-container">
                     <div class="voice-wave" id="waveContainer">
@@ -563,11 +613,16 @@
 
                     <div class="voice-status" id="voiceStatus">💝 Tap Play to hear my heart...</div>
                 </div>
+
+                <div class="voice-signature">
+                    With lots of love and prayers, <span class="heart">❤️</span><br>
+                    Janet <span class="heart">❤️</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Janet's Letter -->
+    <!-- JANET'S LETTER - ZOOMED FOR READING -->
     <div class="card">
         <div class="content">
             <div class="letter-card">
@@ -608,7 +663,7 @@
 
     <div class="footer-note">
         🕊️ Jeremiah 29:11 — “Plans to give you hope and a future” 🕊️<br>
-        🎓 3rd July | Abigail's Graduation Day 🎓
+        🎓 3rd July | Abigael's Graduation Day 🎓
     </div>
 </div>
 
@@ -642,9 +697,9 @@
     ];
 
     // ============================================================
-    // JANET'S LETTER
+    // JANET'S LETTER (types after voice note)
     // ============================================================
-    const JANET_LETTER = `Dear Abigail,
+    const JANET_LETTER = `Dear Abigael,
 
 As I celebrate this special milestone with you, I can't help but look back and smile at how far we've come together.
 
@@ -654,7 +709,7 @@ A month later, you were introduced to the Media Department, and that's when our 
 
 Somewhere along the journey, I decided that you would be my baby sister ❤️. Watching you grow, mature, and become the amazing young woman you are today has been such a blessing. We've shared countless laughs, hilarious photos, unforgettable memories, and moments that I will cherish forever. Now we're like glue—always finding our way back to each other no matter what. 🤗
 
-Abigail, I thank God for your life. Thank you for your friendship, your kindness, your strength, and for being such a beautiful light to everyone around you. Seeing you graduate fills me with so much pride and joy. This is only the beginning of the wonderful things God has prepared for you.
+Abigael, I thank God for your life. Thank you for your friendship, your kindness, your strength, and for being such a beautiful light to everyone around you. Seeing you graduate fills me with so much pride and joy. This is only the beginning of the wonderful things God has prepared for you.
 
 As you step into this new chapter, remember that you are capable, loved, gifted, and destined for great things. Don't be afraid to dream big, trust God wholeheartedly, and keep being the joyful person that makes everyone around you smile.
 
@@ -814,7 +869,7 @@ Congratulations, my baby sister. 🎓✨`;
     function typeWelcome() {
         const titleEl = document.getElementById('welcomeTitle');
         const subtitleEl = document.getElementById('welcomeSubtitle');
-        const titleText = "✨ For You, Abigail ✨";
+        const titleText = "✨ For You, Abigael ✨";
         const subtitleText = "💝 A special graduation gift from your loved ones 💝";
         
         let i = 0;
@@ -899,7 +954,7 @@ Congratulations, my baby sister. 🎓✨`;
     modal.onclick = (e) => { if (e.target === modal) modalClose.onclick(); };
 
     // ============================================================
-    // VOICE NOTE PLAYER - WITH SOFT BEAT BACKGROUND
+    // VOICE NOTE PLAYER
     // ============================================================
     const voiceAudio = new Audio("voicenote.mp3");
     const voiceProgress = document.getElementById('voiceProgress');
@@ -909,9 +964,7 @@ Congratulations, my baby sister. 🎓✨`;
     const waveBars = document.querySelectorAll('.wave-bar');
 
     let isVoicePlaying = false;
-
-    // Create a soft beat background (simple oscillator - if available)
-    // Or we'll use a gentle loop effect
+    let letterStarted = false;
 
     voiceAudio.addEventListener('loadedmetadata', () => {
         const minutes = Math.floor(voiceAudio.duration / 60);
@@ -946,8 +999,12 @@ Congratulations, my baby sister. 🎓✨`;
         voiceStatus.textContent = '💝 Thank you for listening! 🙏';
         waveBars.forEach(bar => bar.classList.remove('active'));
         burstAnimation();
-        // Letter will type after voice ends
-        typeWriter(JANET_LETTER, document.getElementById('letterMessage'), 20);
+        
+        // Start typing the letter only once
+        if (!letterStarted) {
+            letterStarted = true;
+            typeWriter(JANET_LETTER, document.getElementById('letterMessage'), 20);
+        }
     });
 
     document.getElementById('voicePlayBtn').onclick = () => {
