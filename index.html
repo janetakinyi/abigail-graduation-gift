@@ -109,6 +109,147 @@
             letter-spacing: 1px;
         }
 
+        /* VOICE NOTE PLAYER - ENHANCED */
+        .voice-note-card {
+            background: linear-gradient(145deg, #1a1a1a, #2a1a1a);
+            border-radius: 45px 25px 45px 25px;
+            padding: 28px 25px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+        }
+
+        .voice-note-title {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #ffb6c1;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .voice-note-title .icon {
+            animation: pulseMic 1.5s infinite;
+        }
+
+        @keyframes pulseMic {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .voice-player-container {
+            background: #0a0a0a;
+            border-radius: 30px;
+            padding: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.2);
+        }
+
+        .voice-wave {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 50px;
+            margin-bottom: 15px;
+        }
+
+        .wave-bar {
+            width: 4px;
+            background: linear-gradient(to top, #ffb6c1, #d4af37);
+            border-radius: 10px;
+            animation: waveAnim 0.8s ease-in-out infinite alternate;
+            transition: height 0.3s;
+        }
+
+        .wave-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+        .wave-bar:nth-child(2) { height: 35px; animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { height: 25px; animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { height: 45px; animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { height: 30px; animation-delay: 0.4s; }
+        .wave-bar:nth-child(6) { height: 40px; animation-delay: 0.5s; }
+        .wave-bar:nth-child(7) { height: 20px; animation-delay: 0.6s; }
+        .wave-bar:nth-child(8) { height: 50px; animation-delay: 0.7s; }
+        .wave-bar:nth-child(9) { height: 28px; animation-delay: 0.8s; }
+        .wave-bar:nth-child(10) { height: 38px; animation-delay: 0.9s; }
+        .wave-bar:nth-child(11) { height: 22px; animation-delay: 1.0s; }
+        .wave-bar:nth-child(12) { height: 42px; animation-delay: 1.1s; }
+
+        .wave-bar.active {
+            animation: waveActive 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes waveAnim {
+            0% { height: 10px; }
+            100% { height: 50px; }
+        }
+
+        @keyframes waveActive {
+            0% { height: 15px; }
+            100% { height: 50px; }
+        }
+
+        .voice-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .voice-controls button {
+            background: linear-gradient(135deg, #ffb6c1, #ff85a1);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #1a1a1a;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .voice-controls button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+        }
+
+        .voice-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffb6c1;
+            font-size: 0.8rem;
+        }
+
+        .voice-progress input[type="range"] {
+            flex: 1;
+            height: 4px;
+            -webkit-appearance: none;
+            background: linear-gradient(to right, #ffb6c1, #d4af37);
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .voice-progress input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #d4af37;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .voice-status {
+            text-align: center;
+            color: #ffb6c1;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            opacity: 0.7;
+        }
+
         .letter-card {
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
             border-radius: 45px 25px 45px 25px;
@@ -239,90 +380,6 @@
             background: #0a0a0a;
         }
 
-        /* Voice Note Player - SEPARATE */
-        .voice-note-player {
-            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
-            border: 2px solid #ffb6c1;
-            border-radius: 60px;
-            padding: 15px 20px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            box-shadow: 0 0 30px rgba(255, 182, 193, 0.15);
-        }
-
-        .voice-note-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ffb6c1;
-            font-weight: bold;
-        }
-
-        .voice-note-info .icon {
-            font-size: 1.5rem;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .voice-note-controls button {
-            background: linear-gradient(135deg, #ffb6c1, #ff85a1);
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #1a1a1a;
-            margin: 0 5px;
-            transition: 0.2s;
-        }
-
-        .voice-note-controls button:hover {
-            transform: scale(1.05);
-        }
-
-        /* Music Player - SEPARATE */
-        .music-player {
-            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
-            border: 2px solid #d4af37;
-            border-radius: 60px;
-            padding: 12px 20px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .music-info {
-            color: #d4af37;
-            font-weight: bold;
-        }
-
-        .music-controls button {
-            background: linear-gradient(135deg, #d4af37, #ffb6c1);
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #1a1a1a;
-            margin: 0 5px;
-            transition: 0.2s;
-        }
-
-        .music-controls button:hover {
-            transform: scale(1.05);
-        }
-
         .modal {
             display: none;
             position: fixed;
@@ -370,6 +427,40 @@
             background: #ffb6c1;
         }
 
+        .music-player {
+            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
+            border: 2px solid #d4af37;
+            border-radius: 60px;
+            padding: 12px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .music-info {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .music-controls button {
+            background: linear-gradient(135deg, #d4af37, #ffb6c1);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #1a1a1a;
+            margin: 0 5px;
+            transition: 0.2s;
+        }
+
+        .music-controls button:hover {
+            transform: scale(1.05);
+        }
+
         .confetti-btn {
             background: linear-gradient(135deg, #d4af37, #ffb6c1);
             border: none;
@@ -402,6 +493,7 @@
             #welcomeTitle { font-size: 1.3rem; }
             .media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
             .poster-section { grid-template-columns: 1fr; }
+            .voice-controls button { padding: 10px 20px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -432,6 +524,49 @@
         </div>
     </div>
 
+    <!-- VOICE NOTE PLAYER - ENHANCED -->
+    <div class="card">
+        <div class="content">
+            <div class="voice-note-card">
+                <div class="voice-note-title">
+                    <span class="icon">🎙️</span>
+                    💖 A Voice Message From Janet 💖
+                    <span class="icon">🎙️</span>
+                </div>
+
+                <div class="voice-player-container">
+                    <div class="voice-wave" id="waveContainer">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+
+                    <div class="voice-controls">
+                        <button id="voicePlayBtn">▶ Play</button>
+                        <button id="voicePauseBtn">⏸ Pause</button>
+                    </div>
+
+                    <div class="voice-progress">
+                        <span id="voiceCurrentTime">0:00</span>
+                        <input type="range" id="voiceProgress" value="0" min="0" max="100">
+                        <span id="voiceDuration">0:00</span>
+                    </div>
+
+                    <div class="voice-status" id="voiceStatus">💝 Tap Play to hear my heart...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Janet's Letter -->
     <div class="card">
         <div class="content">
@@ -443,19 +578,7 @@
         </div>
     </div>
 
-    <!-- VOICE NOTE PLAYER - SEPARATE -->
-    <div class="voice-note-player">
-        <div class="voice-note-info">
-            <span class="icon">🎙️</span>
-            <span>Voice Note from Janet 💝</span>
-        </div>
-        <div class="voice-note-controls">
-            <button id="voicePlayBtn">▶ Play</button>
-            <button id="voicePauseBtn">⏸ Pause</button>
-        </div>
-    </div>
-
-    <!-- MUSIC PLAYER - SEPARATE -->
+    <!-- Music Player -->
     <div class="music-player">
         <div class="music-info">🎵 Worship Melody</div>
         <div class="music-controls">
@@ -776,18 +899,72 @@ Congratulations, my baby sister. 🎓✨`;
     modal.onclick = (e) => { if (e.target === modal) modalClose.onclick(); };
 
     // ============================================================
-    // VOICE NOTE PLAYER - SEPARATE!
+    // VOICE NOTE PLAYER - WITH SOFT BEAT BACKGROUND
     // ============================================================
     const voiceAudio = new Audio("voicenote.mp3");
+    const voiceProgress = document.getElementById('voiceProgress');
+    const voiceCurrentTime = document.getElementById('voiceCurrentTime');
+    const voiceDuration = document.getElementById('voiceDuration');
+    const voiceStatus = document.getElementById('voiceStatus');
+    const waveBars = document.querySelectorAll('.wave-bar');
+
+    let isVoicePlaying = false;
+
+    // Create a soft beat background (simple oscillator - if available)
+    // Or we'll use a gentle loop effect
+
+    voiceAudio.addEventListener('loadedmetadata', () => {
+        const minutes = Math.floor(voiceAudio.duration / 60);
+        const seconds = Math.floor(voiceAudio.duration % 60);
+        voiceDuration.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    });
+
+    voiceAudio.addEventListener('timeupdate', () => {
+        const progress = (voiceAudio.currentTime / voiceAudio.duration) * 100;
+        voiceProgress.value = progress;
+        
+        const minutes = Math.floor(voiceAudio.currentTime / 60);
+        const seconds = Math.floor(voiceAudio.currentTime % 60);
+        voiceCurrentTime.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    });
+
+    voiceAudio.addEventListener('play', () => {
+        isVoicePlaying = true;
+        voiceStatus.textContent = '🎙️ Listening... 💖';
+        waveBars.forEach(bar => bar.classList.add('active'));
+        burstAnimation();
+    });
+
+    voiceAudio.addEventListener('pause', () => {
+        isVoicePlaying = false;
+        voiceStatus.textContent = '⏸️ Paused';
+        waveBars.forEach(bar => bar.classList.remove('active'));
+    });
+
+    voiceAudio.addEventListener('ended', () => {
+        isVoicePlaying = false;
+        voiceStatus.textContent = '💝 Thank you for listening! 🙏';
+        waveBars.forEach(bar => bar.classList.remove('active'));
+        burstAnimation();
+        // Letter will type after voice ends
+        typeWriter(JANET_LETTER, document.getElementById('letterMessage'), 20);
+    });
+
     document.getElementById('voicePlayBtn').onclick = () => {
         voiceAudio.play();
     };
+
     document.getElementById('voicePauseBtn').onclick = () => {
         voiceAudio.pause();
     };
 
+    voiceProgress.addEventListener('input', () => {
+        const seekTime = (voiceProgress.value / 100) * voiceAudio.duration;
+        voiceAudio.currentTime = seekTime;
+    });
+
     // ============================================================
-    // MUSIC PLAYER - SEPARATE!
+    // MUSIC PLAYER
     // ============================================================
     const musicAudio = new Audio();
     const songs = [
@@ -818,8 +995,7 @@ Congratulations, my baby sister. 🎓✨`;
     window.addEventListener('load', () => {
         resizeCanvas();
         typeWelcome();
-        typeWriter(JANET_LETTER, document.getElementById('letterMessage'), 20);
-        startAnimation(6000);
+        // Letter will type AFTER voice note ends
     });
 </script>
 </body>
